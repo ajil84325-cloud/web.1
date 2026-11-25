@@ -1,0 +1,1747 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masjid Raya Al-Ihsan - Pusat Ibadah & Dakwah Islam</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              emerald: {
+                600: "#059669",
+                700: "#047857",
+                800: "#065f46",
+                900: "#064e3b",
+              },
+              gold: {
+                500: "#D97706",
+                600: "#B45309",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Chart.js for Financial Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      .hero-pattern {
+        background-color: #064e3b;
+        background-image: radial-gradient(#059669 0.75px, #064e3b 0.75px);
+        background-size: 15px 15px;
+      }
+      .gold-gradient {
+        background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      }
+      .modal {
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen"
+  >
+    <!-- Top Info Bar -->
+    <div
+      class="bg-emerald-900 text-emerald-100 text-xs py-2 px-4 border-b border-emerald-800"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2"
+      >
+        <div class="flex items-center gap-4">
+          <span
+            ><i class="fa-solid fa-location-dot text-gold-500 mr-1"></i> Jl.
+            Raya Pajajaran No. 45, Bogor</span
+          >
+          <span class="hidden md:inline"
+            ><i class="fa-solid fa-phone text-gold-500 mr-1"></i> (0251)
+            8321456</span
+          >
+        </div>
+        <div class="flex items-center gap-3">
+          <span id="current-date" class="font-medium text-gold-400"
+            >Kamis, 19 November 2026</span
+          >
+          <span class="hidden sm:inline">|</span>
+          <span id="hijri-date" class="text-emerald-200"
+            >9 Jumadil Akhir 1448 H</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky Navigation Bar -->
+    <header
+      class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-sm border-b border-slate-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-20 items-center">
+          <!-- Logo Brand -->
+          <a href="#beranda" class="flex items-center gap-3">
+            <div
+              class="w-12 h-12 rounded-xl bg-emerald-800 flex items-center justify-center text-gold-500 text-2xl shadow-md border border-gold-500/30"
+            >
+              <i class="fa-solid fa-mosque"></i>
+            </div>
+            <div>
+              <span
+                class="block font-bold text-lg text-emerald-900 leading-tight"
+                >Masjid Al-Ihsan</span
+              >
+              <span
+                class="block text-xs text-slate-500 tracking-wider font-semibold uppercase"
+                >Bogor, Jawa Barat</span
+              >
+            </div>
+          </a>
+
+          <!-- Desktop Navigation Links -->
+          <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+            <a
+              href="#beranda"
+              class="px-3 py-2 rounded-lg text-sm font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 transition"
+              >Beranda</a
+            >
+            <a
+              href="#jadwal"
+              class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-slate-100 transition"
+              >Jadwal Sholat</a
+            >
+            <a
+              href="#kegiatan"
+              class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-slate-100 transition"
+              >Kegiatan & Kajian</a
+            >
+            <a
+              href="#keuangan"
+              class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-slate-100 transition"
+              >Keuangan Kas</a
+            >
+            <a
+              href="#galeri"
+              class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-slate-100 transition"
+              >Galeri & Artikel</a
+            >
+            <a
+              href="#kontak"
+              class="px-3 py-2 rounded-lg text-sm font-medium text-slate-600 hover:text-emerald-800 hover:bg-slate-100 transition"
+              >Kontak</a
+            >
+          </nav>
+
+          <!-- Action CTA -->
+          <div class="hidden sm:flex items-center gap-3">
+            <button
+              onclick="openDonationModal()"
+              class="gold-gradient text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-amber-500/20 hover:opacity-95 transform active:scale-95 transition flex items-center gap-2"
+            >
+              <i class="fa-solid fa-hand-holding-dollar"></i> Donasi Sekarang
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="lg:hidden flex items-center">
+            <button
+              id="mobile-menu-btn"
+              class="p-2 rounded-lg text-slate-600 hover:text-emerald-800 hover:bg-slate-100 focus:outline-none"
+            >
+              <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-2"
+      >
+        <a
+          href="#beranda"
+          class="block px-3 py-2 rounded-lg text-base font-semibold text-emerald-800 bg-emerald-50"
+          >Beranda</a
+        >
+        <a
+          href="#jadwal"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-100"
+          >Jadwal Sholat</a
+        >
+        <a
+          href="#kegiatan"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-100"
+          >Kegiatan & Kajian</a
+        >
+        <a
+          href="#keuangan"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-100"
+          >Keuangan Kas</a
+        >
+        <a
+          href="#galeri"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-100"
+          >Galeri & Artikel</a
+        >
+        <a
+          href="#kontak"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-slate-100"
+          >Kontak</a
+        >
+        <div class="pt-2">
+          <button
+            onclick="openDonationModal()"
+            class="w-full text-center gold-gradient text-white font-semibold py-3 rounded-xl shadow-md"
+          >
+            <i class="fa-solid fa-hand-holding-dollar mr-2"></i> Donasi Sekarang
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+      <!-- 1. BERANDA (Hero Section & Daily Verse) -->
+      <section
+        id="beranda"
+        class="relative hero-pattern text-white overflow-hidden py-20 lg:py-32"
+      >
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+              <div
+                class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-800/80 border border-emerald-600/50 text-gold-400 text-xs font-medium tracking-wide uppercase"
+              >
+                <i class="fa-solid fa-star-and-crescent"></i> Selamat Datang di
+                Website Resmi
+              </div>
+              <h1
+                class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight"
+              >
+                Memakmurkan Masjid,
+                <span class="text-gold-400">Membangun Peradaban</span> Ummat
+              </h1>
+              <p
+                class="text-lg text-emerald-100 font-normal max-w-2xl leading-relaxed"
+              >
+                Pusat kegiatan ibadah, pendidikan Islam, konsultasi keagamaan,
+                serta pemberdayaan sosial ekonomi jamaah yang modern,
+                transparan, dan inklusif.
+              </p>
+              <div class="flex flex-wrap gap-4 pt-2">
+                <a
+                  href="#jadwal"
+                  class="bg-white text-emerald-900 font-bold px-6 py-3.5 rounded-xl shadow-lg hover:bg-emerald-50 transition flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-clock"></i> Cek Jadwal Sholat
+                </a>
+                <a
+                  href="#kegiatan"
+                  class="border-2 border-white/80 hover:bg-white/10 text-white font-semibold px-6 py-3.5 rounded-xl transition flex items-center gap-2"
+                >
+                  <i class="fa-solid fa-calendar-days"></i> Lihat Agenda
+                </a>
+              </div>
+            </div>
+
+            <!-- Quick Daily Card & Countdown Summary -->
+            <div class="lg:col-span-5">
+              <div
+                class="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/20 shadow-2xl space-y-6"
+              >
+                <div class="border-b border-white/20 pb-4">
+                  <span
+                    class="text-xs uppercase tracking-widest text-gold-400 font-bold"
+                    >Ayat / Hadis Harian</span
+                  >
+                  <h3 class="text-xl font-bold mt-1 text-white">
+                    QS. At-Taubah: 18
+                  </h3>
+                  <p
+                    class="text-emerald-100 text-sm mt-2 italic leading-relaxed"
+                  >
+                    "Hanyalah yang memakmurkan masjid-masjid Allah ialah
+                    orang-orang yang beriman kepada Allah dan hari kemudian,
+                    serta tetap mendirikan shalat..."
+                  </p>
+                </div>
+
+                <div
+                  class="bg-emerald-950/60 rounded-xl p-4 border border-emerald-800/60"
+                >
+                  <div class="flex justify-between items-center mb-2">
+                    <span
+                      class="text-xs font-semibold uppercase tracking-wider text-emerald-300"
+                      >Sholat Berikutnya:
+                      <span
+                        id="next-prayer-name"
+                        class="text-gold-400 font-bold"
+                        >Ashar</span
+                      ></span
+                    >
+                    <span
+                      class="text-xs text-slate-300 bg-emerald-900 px-2 py-0.5 rounded"
+                      id="next-prayer-time"
+                      >15:18 WIB</span
+                    >
+                  </div>
+                  <div
+                    class="text-2xl font-black text-center text-white tracking-widest bg-emerald-900/80 py-3 rounded-lg border border-emerald-700/50"
+                    id="countdown-timer"
+                  >
+                    01 : 42 : 15
+                  </div>
+                  <p class="text-[11px] text-center text-emerald-300 mt-2">
+                    Menuju waktu adzan berkumandang
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sambutan Pengurus Singkat -->
+      <section class="py-16 bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+            <div class="md:col-span-1 text-center">
+              <div class="relative inline-block">
+                <img
+                  src="https://placehold.co/300x350/064e3b/ffffff?text=Ketua+DKM"
+                  alt="Ketua DKM"
+                  class="rounded-2xl shadow-lg object-cover w-64 h-72 mx-auto border-4 border-emerald-50"
+                />
+                <div
+                  class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 gold-gradient text-white text-xs font-bold px-4 py-1.5 rounded-full shadow"
+                >
+                  Ketua DKM Al-Ihsan
+                </div>
+              </div>
+            </div>
+            <div class="md:col-span-2 space-y-4">
+              <span
+                class="text-xs uppercase font-bold text-emerald-700 tracking-wider bg-emerald-50 px-3 py-1 rounded-full"
+                >Sambutan Pengurus</span
+              >
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-emerald-900">
+                Selamat Datang di Portal Layanan Ummat
+              </h2>
+              <p class="text-slate-600 leading-relaxed text-justify">
+                "Puji syukur kita panjatkan ke hadirat Allah SWT. Masjid Raya
+                Al-Ihsan berkomitmen untuk tidak hanya menjadi tempat ibadah
+                ritual semata, melainkan pusat peradaban, pembinaan aqidah,
+                pusat ilmu, dan penggerak ekonomi kerakyatan bagi seluruh
+                jamaah. Melalui website ini, kami berupaya memberikan
+                transparansi laporan keuangan, kemudahan berdonasi, serta akses
+                informasi kegiatan secara real-time."
+              </p>
+              <div class="pt-2">
+                <p class="font-bold text-emerald-900">
+                  Dr. H. Ahmad Fauzi, M.Ag.
+                </p>
+                <p class="text-sm text-slate-500">
+                  Ketua Dewan Kemakmuran Masjid (DKM) Al-Ihsan
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. JADWAL SHOLAT -->
+      <section id="jadwal" class="py-16 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+            <span
+              class="text-xs uppercase font-bold text-emerald-700 tracking-wider bg-emerald-100 px-3 py-1 rounded-full"
+              >Waktu Ibadah</span
+            >
+            <h2 class="text-3xl font-extrabold text-emerald-900">
+              Jadwal Sholat Hari Ini
+            </h2>
+            <p class="text-slate-600 text-sm">
+              Wilayah Bogor dan Sekitarnya. Sumber: Kemenag RI
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+            id="prayer-cards-container"
+          >
+            <!-- Cards will be dynamically updated via JS or preset nicely -->
+            <div
+              class="bg-white rounded-2xl p-5 text-center shadow-sm border border-slate-200 hover:border-emerald-600 transition"
+            >
+              <div class="text-slate-500 text-sm font-medium mb-1">Imsak</div>
+              <div class="text-2xl font-bold text-emerald-900 mb-2">04:12</div>
+              <span
+                class="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"
+                >WIB</span
+              >
+            </div>
+            <div
+              class="bg-white rounded-2xl p-5 text-center shadow-sm border border-slate-200 hover:border-emerald-600 transition"
+            >
+              <div class="text-slate-500 text-sm font-medium mb-1">Subuh</div>
+              <div class="text-2xl font-bold text-emerald-900 mb-2">04:22</div>
+              <span
+                class="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"
+                >WIB</span
+              >
+            </div>
+            <div
+              class="bg-white rounded-2xl p-5 text-center shadow-sm border border-slate-200 hover:border-emerald-600 transition"
+            >
+              <div class="text-slate-500 text-sm font-medium mb-1">Dzuhur</div>
+              <div class="text-2xl font-bold text-emerald-900 mb-2">11:55</div>
+              <span
+                class="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"
+                >WIB</span
+              >
+            </div>
+            <div
+              class="bg-white rounded-2xl p-5 text-center shadow-sm border border-slate-200 hover:border-emerald-600 transition"
+            >
+              <div class="text-slate-500 text-sm font-medium mb-1">Ashar</div>
+              <div class="text-2xl font-bold text-emerald-900 mb-2">15:18</div>
+              <span
+                class="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"
+                >WIB</span
+              >
+            </div>
+            <div
+              class="bg-white rounded-2xl p-5 text-center shadow-sm border border-slate-200 hover:border-emerald-600 transition"
+            >
+              <div class="text-slate-500 text-sm font-medium mb-1">Maghrib</div>
+              <div class="text-2xl font-bold text-emerald-900 mb-2">18:05</div>
+              <span
+                class="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"
+                >WIB</span
+              >
+            </div>
+            <div
+              class="bg-white rounded-2xl p-5 text-center shadow-sm border border-slate-200 hover:border-emerald-600 transition"
+            >
+              <div class="text-slate-500 text-sm font-medium mb-1">Isya</div>
+              <div class="text-2xl font-bold text-emerald-900 mb-2">19:20</div>
+              <span
+                class="text-xs text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full"
+                >WIB</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. KEGIATAN & KAJIAN -->
+      <section id="kegiatan" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4"
+          >
+            <div>
+              <span
+                class="text-xs uppercase font-bold text-emerald-700 tracking-wider bg-emerald-50 px-3 py-1 rounded-full"
+                >Agenda Dakwah</span
+              >
+              <h2 class="text-3xl font-extrabold text-emerald-900 mt-2">
+                Kegiatan & Kajian Masjid
+              </h2>
+            </div>
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-2">
+              <button
+                onclick="filterEvents('all')"
+                class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-emerald-800 text-white shadow-sm transition"
+              >
+                Semua
+              </button>
+              <button
+                onclick="filterEvents('rutin')"
+                class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition"
+              >
+                Kajian Rutin
+              </button>
+              <button
+                onclick="filterEvents('akbar')"
+                class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition"
+              >
+                Kajian Akbar
+              </button>
+              <button
+                onclick="filterEvents('sosial')"
+                class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition"
+              >
+                Sosial & Remaja
+              </button>
+            </div>
+          </div>
+
+          <!-- Event Cards Grid -->
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            id="events-grid"
+          >
+            <!-- Event 1 -->
+            <div
+              class="event-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col"
+              data-category="rutin"
+            >
+              <div class="relative h-48 bg-emerald-800">
+                <img
+                  src="https://placehold.co/600x400/064e3b/ffffff?text=Kajian+Tafsir"
+                  alt="Kajian Tafsir"
+                  class="w-full h-full object-cover opacity-90"
+                />
+                <span
+                  class="absolute top-4 right-4 bg-emerald-900 text-gold-400 text-xs font-bold px-3 py-1 rounded-full border border-gold-500/30"
+                  >Kajian Rutin</span
+                >
+              </div>
+              <div
+                class="p-6 flex-grow flex flex-col justify-between space-y-4"
+              >
+                <div>
+                  <div
+                    class="flex items-center gap-2 text-xs text-emerald-700 font-semibold mb-2"
+                  >
+                    <span
+                      ><i class="fa-solid fa-calendar mr-1"></i> Setiap
+                      Selasa</span
+                    >
+                    <span>•</span>
+                    <span
+                      ><i class="fa-solid fa-clock mr-1"></i> Ba'da
+                      Maghrib</span
+                    >
+                  </div>
+                  <h3 class="text-xl font-bold text-emerald-900">
+                    Kajian Tafsir Al-Quran Tematik
+                  </h3>
+                  <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                    Mengkaji ayat-ayat pilihan seputar kehidupan sehari-hari
+                    bersama Ustadz Dr. H. M. Zain, Lc., M.A.
+                  </p>
+                </div>
+                <div
+                  class="pt-4 border-t border-slate-200 flex justify-between items-center"
+                >
+                  <span class="text-xs text-slate-500"
+                    ><i class="fa-solid fa-location-dot mr-1"></i> Ruang Utama
+                    Masjid</span
+                  >
+                  <button
+                    onclick="
+                      openDetailModal(
+                        'Kajian Tafsir Al-Quran',
+                        'Setiap Selasa Ba\'da Maghrib',
+                        'Ustadz Dr. H. M. Zain, Lc., M.A.',
+                        'Mengkaji ayat-ayat pilihan seputar kehidupan sehari-hari, akhlak, dan fiqih muamalah secara mendalam.',
+                      )
+                    "
+                    class="text-emerald-800 font-bold text-sm hover:underline"
+                  >
+                    Detail &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Event 2 -->
+            <div
+              class="event-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col"
+              data-category="akbar"
+            >
+              <div class="relative h-48 bg-emerald-800">
+                <img
+                  src="https://placehold.co/600x400/047857/ffffff?text=Tabligh+Akbar"
+                  alt="Tabligh Akbar"
+                  class="w-full h-full object-cover opacity-90"
+                />
+                <span
+                  class="absolute top-4 right-4 gold-gradient text-white text-xs font-bold px-3 py-1 rounded-full"
+                  >Kajian Akbar</span
+                >
+              </div>
+              <div
+                class="p-6 flex-grow flex flex-col justify-between space-y-4"
+              >
+                <div>
+                  <div
+                    class="flex items-center gap-2 text-xs text-emerald-700 font-semibold mb-2"
+                  >
+                    <span
+                      ><i class="fa-solid fa-calendar mr-1"></i> Minggu, 22 Nov
+                      2026</span
+                    >
+                    <span>•</span>
+                    <span
+                      ><i class="fa-solid fa-clock mr-1"></i> 08:00 WIB</span
+                    >
+                  </div>
+                  <h3 class="text-xl font-bold text-emerald-900">
+                    Tabligh Akbar Menyambut Isra Mi'raj
+                  </h3>
+                  <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                    Peringatan hari besar Islam bersama penceramah tamu nasional
+                    KH. Abdullah Gymnastiar (Aa Gym).
+                  </p>
+                </div>
+                <div
+                  class="pt-4 border-t border-slate-200 flex justify-between items-center"
+                >
+                  <span class="text-xs text-slate-500"
+                    ><i class="fa-solid fa-location-dot mr-1"></i> Aula Utama &
+                    Halaman</span
+                  >
+                  <button
+                    onclick="
+                      openDetailModal(
+                        'Tabligh Akbar Isra Mi\'raj',
+                        'Minggu, 22 Nov 2026, 08:00 WIB',
+                        'KH. Abdullah Gymnastiar',
+                        'Peringatan akbar untuk umum, dilengkapi bazar amal dan santunan anak yatim.',
+                      )
+                    "
+                    class="text-emerald-800 font-bold text-sm hover:underline"
+                  >
+                    Detail &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Event 3 -->
+            <div
+              class="event-card bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition flex flex-col"
+              data-category="sosial"
+            >
+              <div class="relative h-48 bg-emerald-800">
+                <img
+                  src="https://placehold.co/600x400/065f46/ffffff?text=Santunan+Yatim"
+                  alt="Santunan Yatim"
+                  class="w-full h-full object-cover opacity-90"
+                />
+                <span
+                  class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full"
+                  >Sosial & Remaja</span
+                >
+              </div>
+              <div
+                class="p-6 flex-grow flex flex-col justify-between space-y-4"
+              >
+                <div>
+                  <div
+                    class="flex items-center gap-2 text-xs text-emerald-700 font-semibold mb-2"
+                  >
+                    <span
+                      ><i class="fa-solid fa-calendar mr-1"></i> Jumat, 27 Nov
+                      2026</span
+                    >
+                    <span>•</span>
+                    <span
+                      ><i class="fa-solid fa-clock mr-1"></i> 16:00 WIB</span
+                    >
+                  </div>
+                  <h3 class="text-xl font-bold text-emerald-900">
+                    Jumat Berkah & Santunan Dhuafa
+                  </h3>
+                  <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                    Penyaluran 150 paket sembako dan santunan rutin bagi anak
+                    yatim serta kaum dhuafa sekitar masjid.
+                  </p>
+                </div>
+                <div
+                  class="pt-4 border-t border-slate-200 flex justify-between items-center"
+                >
+                  <span class="text-xs text-slate-500"
+                    ><i class="fa-solid fa-location-dot mr-1"></i> Serambi
+                    Masjid</span
+                  >
+                  <button
+                    onclick="
+                      openDetailModal(
+                        'Jumat Berkah & Santunan',
+                        'Jumat, 27 Nov 2026, 16:00 WIB',
+                        'Pengurus DKM & Remaja Masjid',
+                        'Penyaluran bantuan beras, sembako, dan uang tunai hasil infaq jamaah.',
+                      )
+                    "
+                    class="text-emerald-800 font-bold text-sm hover:underline"
+                  >
+                    Detail &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. KEUANGAN KAS MASJID -->
+      <section id="keuangan" class="py-16 bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+            <span
+              class="text-xs uppercase font-bold text-emerald-700 tracking-wider bg-emerald-100 px-3 py-1 rounded-full"
+              >Transparansi Keuangan</span
+            >
+            <h2 class="text-3xl font-extrabold text-emerald-900">
+              Laporan Kas Masjid
+            </h2>
+            <p class="text-slate-600 text-sm">
+              Update keuangan bulanan periode November 2026 secara akuntabel dan
+              terbuka.
+            </p>
+          </div>
+
+          <!-- Financial Summary Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div
+              class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4"
+            >
+              <div
+                class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-2xl font-bold"
+              >
+                <i class="fa-solid fa-wallet"></i>
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 uppercase font-semibold"
+                  >Saldo Kas Terkini</span
+                >
+                <h3 class="text-2xl font-black text-emerald-900 mt-1">
+                  Rp 48.750.000
+                </h3>
+              </div>
+            </div>
+            <div
+              class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4"
+            >
+              <div
+                class="w-14 h-14 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center text-2xl font-bold"
+              >
+                <i class="fa-solid fa-arrow-trend-up"></i>
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 uppercase font-semibold"
+                  >Total Pemasukan (Bulan ini)</span
+                >
+                <h3 class="text-2xl font-black text-blue-700 mt-1">
+                  Rp 18.200.000
+                </h3>
+              </div>
+            </div>
+            <div
+              class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center gap-4"
+            >
+              <div
+                class="w-14 h-14 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl font-bold"
+              >
+                <i class="fa-solid fa-arrow-trend-down"></i>
+              </div>
+              <div>
+                <span class="text-xs text-slate-500 uppercase font-semibold"
+                  >Total Pengeluaran (Bulan ini)</span
+                >
+                <h3 class="text-2xl font-black text-amber-700 mt-1">
+                  Rp 9.400.000
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Charts & Recent Transactions Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Simple Chart View -->
+            <div
+              class="lg:col-span-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-200"
+            >
+              <h3 class="text-lg font-bold text-emerald-900 mb-4">
+                Grafik Arus Kas (5 Bulan Terakhir)
+              </h3>
+              <div class="h-72 relative flex items-center justify-center">
+                <canvas id="financeChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Recent Transactions Table -->
+            <div
+              class="lg:col-span-6 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between"
+            >
+              <div>
+                <h3 class="text-lg font-bold text-emerald-900 mb-4">
+                  Transaksi Terakhir
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="bg-slate-50 text-slate-700 uppercase text-xs">
+                      <tr>
+                        <th class="py-3 px-3 rounded-l-lg">Tanggal</th>
+                        <th class="py-3 px-3">Keterangan</th>
+                        <th class="py-3 px-3 text-right rounded-r-lg">
+                          Nominal
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                      <tr>
+                        <td class="py-3 px-3 font-medium">18 Nov</td>
+                        <td class="py-3 px-3">Infaq Kotak Amal Jumat</td>
+                        <td
+                          class="py-3 px-3 text-right font-bold text-emerald-700"
+                        >
+                          +Rp 4.500.000
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-3 px-3 font-medium">15 Nov</td>
+                        <td class="py-3 px-3">
+                          Operasional Kebersihan & Listrik
+                        </td>
+                        <td class="py-3 px-3 text-right font-bold text-red-600">
+                          -Rp 2.100.000
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-3 px-3 font-medium">12 Nov</td>
+                        <td class="py-3 px-3">
+                          Donasi Hamba Allah (Pembangunan)
+                        </td>
+                        <td
+                          class="py-3 px-3 text-right font-bold text-emerald-700"
+                        >
+                          +Rp 10.000.000
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-3 px-3 font-medium">10 Nov</td>
+                        <td class="py-3 px-3">Santunan Anak Yatim Rutin</td>
+                        <td class="py-3 px-3 text-right font-bold text-red-600">
+                          -Rp 3.500.000
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="pt-4 text-center">
+                <span class="text-xs text-slate-400"
+                  >Laporan diverifikasi oleh Bendahara DKM Al-Ihsan</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. DONASI / INFAQ ONLINE -->
+      <section
+        id="donasi"
+        class="py-16 bg-emerald-900 text-white relative overflow-hidden"
+      >
+        <div
+          class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:16px_16px]"
+        ></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-6 space-y-6">
+              <span
+                class="text-xs uppercase font-bold text-gold-400 tracking-wider bg-emerald-800 px-3 py-1 rounded-full border border-gold-500/30"
+                >Gerakan Infaq & Wakaf</span
+              >
+              <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+                Mari Bersedekah Jariyah Untuk Rumah Allah
+              </h2>
+              <p class="text-emerald-100 leading-relaxed">
+                "Barangsiapa yang membangun masjid karena Allah, maka Allah akan
+                membangunkan baginya rumah di surga." (HR. Bukhari & Muslim).
+                Salurkan infaq terbaik Anda untuk pembangunan fasilitas,
+                operasional dakwah, dan santunan yatim.
+              </p>
+              <div class="space-y-4 pt-2">
+                <div
+                  class="flex items-center gap-4 bg-emerald-950/50 p-4 rounded-xl border border-emerald-800"
+                >
+                  <div
+                    class="w-12 h-12 rounded-lg bg-gold-500 text-emerald-950 flex items-center justify-center font-bold text-xl"
+                  >
+                    <i class="fa-solid fa-building-columns"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-emerald-300 block"
+                      >Bank Syariah Indonesia (BSI)</span
+                    >
+                    <span
+                      class="font-mono text-lg font-bold tracking-wider text-gold-400"
+                      >7123-4567-89</span
+                    >
+                    <span class="text-xs text-slate-300 block"
+                      >a.n. Masjid Raya Al-Ihsan Bogor</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Donation Form Container -->
+            <div class="lg:col-span-6">
+              <div
+                class="bg-white text-slate-800 p-8 rounded-3xl shadow-2xl space-y-6"
+              >
+                <h3 class="text-2xl font-bold text-emerald-900 text-center">
+                  Formulir Donasi Online
+                </h3>
+                <form onsubmit="handleDonationSubmit(event)" class="space-y-4">
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-600 uppercase mb-1"
+                      >Pilih Program Donasi</label
+                    >
+                    <select
+                      id="donation-program"
+                      class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                    >
+                      <option value="pembangunan">
+                        Pembangunan & Perluasan Masjid
+                      </option>
+                      <option value="operasional">
+                        Operasional & Kebersihan Harian
+                      </option>
+                      <option value="yatim">
+                        Santunan Anak Yatim & Dhuafa
+                      </option>
+                      <option value="quranhadits">
+                        Pengadaan Al-Quran & Buku Kajian
+                      </option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-600 uppercase mb-1"
+                      >Nominal Donasi (Rp)</label
+                    >
+                    <input
+                      type="number"
+                      id="donation-amount"
+                      placeholder="Contoh: 100000"
+                      required
+                      class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-600 uppercase mb-1"
+                      >Nama Donatur (Opsional / Hamba Allah)</label
+                    >
+                    <input
+                      type="text"
+                      id="donation-name"
+                      placeholder="Nama Lengkap"
+                      class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-emerald-600 focus:outline-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="w-full gold-gradient text-white font-bold py-3.5 rounded-xl shadow-lg hover:opacity-95 transition"
+                  >
+                    Lanjutkan Konfirmasi Pembayaran
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. GALERI & ARTIKEL -->
+      <section id="galeri" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+            <span
+              class="text-xs uppercase font-bold text-emerald-700 tracking-wider bg-emerald-50 px-3 py-1 rounded-full"
+              >Dokumentasi & Wawasan</span
+            >
+            <h2 class="text-3xl font-extrabold text-emerald-900">
+              Galeri & Buletin Jumat
+            </h2>
+            <p class="text-slate-600 text-sm">
+              Dokumentasi kegiatan masjid serta artikel islam pilihan untuk
+              menambah wawasan.
+            </p>
+          </div>
+
+          <!-- Gallery Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+            <div
+              class="relative group overflow-hidden rounded-2xl h-48 bg-slate-200"
+            >
+              <img
+                src="https://placehold.co/400x300/064e3b/ffffff?text=Sholat+Berjamaah"
+                alt="Sholat Berjamaah"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4"
+              >
+                <span class="text-white text-xs font-semibold"
+                  >Sholat Berjamaah Fardhu</span
+                >
+              </div>
+            </div>
+            <div
+              class="relative group overflow-hidden rounded-2xl h-48 bg-slate-200"
+            >
+              <img
+                src="https://placehold.co/400x300/059669/ffffff?text=TPA+Anak"
+                alt="TPA Anak"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4"
+              >
+                <span class="text-white text-xs font-semibold"
+                  >Taman Pendidikan Al-Quran (TPA)</span
+                >
+              </div>
+            </div>
+            <div
+              class="relative group overflow-hidden rounded-2xl h-48 bg-slate-200"
+            >
+              <img
+                src="https://placehold.co/400x300/047857/ffffff?text=Kajian+Remaja"
+                alt="Kajian Remaja"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4"
+              >
+                <span class="text-white text-xs font-semibold"
+                  >Youth Interfaith & Kajian Remaja</span
+                >
+              </div>
+            </div>
+            <div
+              class="relative group overflow-hidden rounded-2xl h-48 bg-slate-200"
+            >
+              <img
+                src="https://placehold.co/400x300/D97706/ffffff?text=Bazar+Amal"
+                alt="Bazar Amal"
+                class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+              />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4"
+              >
+                <span class="text-white text-xs font-semibold"
+                  >Bazar Amal & Kesehatan Gratis</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Articles / Bulletin Section -->
+          <div class="mb-6 flex justify-between items-center">
+            <h3 class="text-2xl font-bold text-emerald-900">
+              Artikel & Buletin Jumat Terbaru
+            </h3>
+            <a
+              href="#"
+              class="text-emerald-700 font-bold text-sm hover:underline"
+              >Semua Artikel &rarr;</a
+            >
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Article 1 -->
+            <div
+              class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col"
+            >
+              <div class="h-44 bg-emerald-800">
+                <img
+                  src="https://placehold.co/600x350/064e3b/ffffff?text=Keutamaan+Sholat"
+                  alt="Artikel 1"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-grow">
+                <div>
+                  <span class="text-xs text-gold-600 font-bold uppercase"
+                    >Buletin Jumat • 13 Nov</span
+                  >
+                  <h4 class="text-lg font-bold text-emerald-900 mt-1">
+                    Meraih Khusyuk dalam Sholat di Tengah Kesibukan Dunia
+                  </h4>
+                  <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                    Tips praktis menghadirkan hati dan pikiran hanya kepada
+                    Allah SWT saat takbir hingga salam.
+                  </p>
+                </div>
+                <div
+                  class="pt-4 mt-4 border-t border-slate-200 flex justify-between items-center"
+                >
+                  <span class="text-xs text-slate-400">Oleh: DKM Al-Ihsan</span>
+                  <button
+                    onclick="
+                      openArticleModal(
+                        'Meraih Khusyuk dalam Sholat',
+                        'Tips praktis menghadirkan hati dan pikiran hanya kepada Allah SWT saat takbir hingga salam di tengah kesibukan aktivitas harian yang padat.',
+                      )
+                    "
+                    class="text-emerald-800 font-bold text-sm hover:underline"
+                  >
+                    Baca Selengkapnya
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Article 2 -->
+            <div
+              class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col"
+            >
+              <div class="h-44 bg-emerald-800">
+                <img
+                  src="https://placehold.co/600x350/059669/ffffff?text=Keutamaan+Infaq"
+                  alt="Artikel 2"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-grow">
+                <div>
+                  <span class="text-xs text-gold-600 font-bold uppercase"
+                    >Artikel Islam • 08 Nov</span
+                  >
+                  <h4 class="text-lg font-bold text-emerald-900 mt-1">
+                    Keutamaan Sedekah Subuh yang Jarang Diketahui
+                  </h4>
+                  <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                    Doa malaikat khusus bagi orang yang berinfak di waktu subuh
+                    setiap harinya.
+                  </p>
+                </div>
+                <div
+                  class="pt-4 mt-4 border-t border-slate-200 flex justify-between items-center"
+                >
+                  <span class="text-xs text-slate-400"
+                    >Oleh: Ustadz H. Rahmat, Lc.</span
+                  >
+                  <button
+                    onclick="
+                      openArticleModal(
+                        'Keutamaan Sedekah Subuh',
+                        'Doa malaikat khusus bagi orang yang berinfak di waktu subuh setiap harinya serta keistimewaan melipatgandakan pahala.',
+                      )
+                    "
+                    class="text-emerald-800 font-bold text-sm hover:underline"
+                  >
+                    Baca Selengkapnya
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Article 3 -->
+            <div
+              class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-200 shadow-sm flex flex-col"
+            >
+              <div class="h-44 bg-emerald-800">
+                <img
+                  src="https://placehold.co/600x350/047857/ffffff?text=Pemuda+Masjid"
+                  alt="Artikel 3"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-grow">
+                <div>
+                  <span class="text-xs text-gold-600 font-bold uppercase"
+                    >Pemuda • 01 Nov</span
+                  >
+                  <h4 class="text-lg font-bold text-emerald-900 mt-1">
+                    Peran Strategis Remaja Masjid di Era Digital
+                  </h4>
+                  <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                    Bagaimana generasi muda memanfaatkan teknologi untuk dakwah
+                    Islam yang kreatif dan mencerahkan.
+                  </p>
+                </div>
+                <div
+                  class="pt-4 mt-4 border-t border-slate-200 flex justify-between items-center"
+                >
+                  <span class="text-xs text-slate-400"
+                    >Oleh: Remaja Al-Ihsan</span
+                  >
+                  <button
+                    onclick="
+                      openArticleModal(
+                        'Peran Strategis Remaja Masjid',
+                        'Bagaimana generasi muda memanfaatkan teknologi untuk dakwah Islam yang kreatif, inovatif, dan mencerahkan umat.',
+                      )
+                    "
+                    class="text-emerald-800 font-bold text-sm hover:underline"
+                  >
+                    Baca Selengkapnya
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. KONTAK & LOKASI -->
+      <section id="kontak" class="py-16 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+            <span
+              class="text-xs uppercase font-bold text-emerald-700 tracking-wider bg-emerald-100 px-3 py-1 rounded-full"
+              >Hubungi Kami</span
+            >
+            <h2 class="text-3xl font-extrabold text-emerald-900">
+              Lokasi & Kontak Masjid
+            </h2>
+            <p class="text-slate-600 text-sm">
+              Kunjungi sekretariat DKM atau hubungi kami melalui saluran
+              komunikasi resmi.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <!-- Contact Information -->
+            <div
+              class="lg:col-span-5 bg-white p-8 rounded-3xl shadow-sm border border-slate-200 flex flex-col justify-between space-y-6"
+            >
+              <div>
+                <h3 class="text-2xl font-bold text-emerald-900 mb-6">
+                  Sekretariat DKM Al-Ihsan
+                </h3>
+                <ul class="space-y-4 text-slate-600 text-sm">
+                  <li class="flex items-start gap-3">
+                    <i
+                      class="fa-solid fa-location-dot text-emerald-700 mt-1 text-lg"
+                    ></i>
+                    <span
+                      >Jl. Raya Pajajaran No. 45, RT.02/RW.05, Baranangsiang,
+                      Kec. Bogor Tim., Kota Bogor, Jawa Barat 16143</span
+                    >
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <i class="fa-solid fa-phone text-emerald-700 text-lg"></i>
+                    <span>(0251) 8321456 / 0812-3456-7890</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <i
+                      class="fa-solid fa-envelope text-emerald-700 text-lg"
+                    ></i>
+                    <span>sekretariat@masjidalihsan-bogor.or.id</span>
+                  </li>
+                  <li class="flex items-center gap-3">
+                    <i class="fa-solid fa-clock text-emerald-700 text-lg"></i>
+                    <span>Buka Setiap Hari: 04.00 - 21.30 WIB</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="pt-6 border-t border-slate-200">
+                <span
+                  class="text-xs uppercase tracking-wider font-semibold text-slate-400 block mb-3"
+                  >Media Sosial Resmi</span
+                >
+                <div class="flex gap-3">
+                  <a
+                    href="#"
+                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-800 hover:text-white flex items-center justify-center transition"
+                    ><i class="fa-brands fa-instagram text-lg"></i
+                  ></a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-800 hover:text-white flex items-center justify-center transition"
+                    ><i class="fa-brands fa-youtube text-lg"></i
+                  ></a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-800 hover:text-white flex items-center justify-center transition"
+                    ><i class="fa-brands fa-facebook text-lg"></i
+                  ></a>
+                  <a
+                    href="#"
+                    class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-800 hover:bg-emerald-800 hover:text-white flex items-center justify-center transition"
+                    ><i class="fa-brands fa-whatsapp text-lg"></i
+                  ></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dummy Interactive Map -->
+            <div
+              class="lg:col-span-7 bg-white p-4 rounded-3xl shadow-sm border border-slate-200 flex flex-col"
+            >
+              <div
+                class="relative w-full h-96 rounded-2xl overflow-hidden bg-emerald-900 flex items-center justify-center border border-slate-300"
+              >
+                <!-- Simulated Map UI -->
+                <div
+                  class="absolute inset-0 bg-slate-200 flex items-center justify-center"
+                >
+                  <img
+                    src="https://placehold.co/800x500/064e3b/ffffff?text=Peta+Interaktif+Lokasi+Masjid+Al-Ihsan"
+                    alt="Peta Lokasi"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div
+                  class="absolute bottom-6 bg-white/90 backdrop-blur px-6 py-3 rounded-xl shadow-lg border border-slate-200 flex items-center gap-4"
+                >
+                  <div class="text-emerald-800 text-2xl font-bold">
+                    <i class="fa-solid fa-map-pin"></i>
+                  </div>
+                  <div>
+                    <span class="text-xs text-slate-500 block"
+                      >Titik Lokasi Utama</span
+                    >
+                    <span class="text-sm font-bold text-emerald-900"
+                      >Masjid Raya Al-Ihsan Bogor</span
+                    >
+                  </div>
+                  <a
+                    href="https://maps.google.com"
+                    target="_blank"
+                    class="ml-auto bg-emerald-800 text-white text-xs font-semibold px-3 py-2 rounded-lg hover:bg-emerald-900 transition"
+                    >Buka Maps</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="bg-emerald-950 text-white pt-12 pb-8 border-t border-emerald-900"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-emerald-900"
+        >
+          <div class="space-y-4 md:col-span-1">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-emerald-800 flex items-center justify-center text-gold-500 text-xl border border-gold-500/30"
+              >
+                <i class="fa-solid fa-mosque"></i>
+              </div>
+              <span class="font-bold text-lg">Masjid Al-Ihsan</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Pusat ibadah dan dakwah Islamiyah yang mencerahkan umat, mandiri
+              secara ekonomi, dan memperkokoh ukhuwah islamiyah.
+            </p>
+          </div>
+          <div>
+            <h4
+              class="font-bold text-sm text-gold-400 uppercase tracking-wider mb-4"
+            >
+              Navigasi Cepat
+            </h4>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li>
+                <a href="#beranda" class="hover:text-gold-400 transition"
+                  >Beranda</a
+                >
+              </li>
+              <li>
+                <a href="#jadwal" class="hover:text-gold-400 transition"
+                  >Jadwal Sholat</a
+                >
+              </li>
+              <li>
+                <a href="#kegiatan" class="hover:text-gold-400 transition"
+                  >Kegiatan & Kajian</a
+                >
+              </li>
+              <li>
+                <a href="#keuangan" class="hover:text-gold-400 transition"
+                  >Keuangan Kas</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-bold text-sm text-gold-400 uppercase tracking-wider mb-4"
+            >
+              Layanan Jamaah
+            </h4>
+            <ul class="space-y-2 text-sm text-slate-300">
+              <li>
+                <a href="#donasi" class="hover:text-gold-400 transition"
+                  >Donasi Online</a
+                >
+              </li>
+              <li>
+                <a href="#galeri" class="hover:text-gold-400 transition"
+                  >Buletin Jumat</a
+                >
+              </li>
+              <li>
+                <a href="#kontak" class="hover:text-gold-400 transition"
+                  >Konsultasi Syariah</a
+                >
+              </li>
+              <li>
+                <a href="#kontak" class="hover:text-gold-400 transition"
+                  >Peminjaman Aula</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-bold text-sm text-gold-400 uppercase tracking-wider mb-4"
+            >
+              Buletin & Info Dakwah
+            </h4>
+            <p class="text-xs text-slate-400 mb-3">
+              Dapatkan jadwal kajian dan buletin jumat langsung ke email Anda.
+            </p>
+            <form onsubmit="handleNewsletter(event)" class="space-y-2">
+              <input
+                type="email"
+                placeholder="Alamat Email Anda"
+                required
+                class="w-full bg-emerald-900 border border-emerald-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-gold-500"
+              />
+              <button
+                type="submit"
+                class="w-full gold-gradient text-white text-xs font-bold py-2 rounded-xl"
+              >
+                Berlangganan
+              </button>
+            </form>
+          </div>
+        </div>
+        <div
+          class="flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4"
+        >
+          <p>
+            &copy; 2026 DKM Masjid Raya Al-Ihsan Bogor. All rights reserved.
+          </p>
+          <p class="flex items-center gap-1">
+            Dibuat dengan <i class="fa-solid fa-heart text-red-500"></i> untuk
+            kemaslahatan umat
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- INTERACTIVE MODALS -->
+
+    <!-- Donation Modal -->
+    <div
+      id="donation-modal"
+      class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative space-y-4"
+      >
+        <button
+          onclick="closeDonationModal()"
+          class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="text-center">
+          <div
+            class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 mx-auto flex items-center justify-center text-xl mb-2"
+          >
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+          </div>
+          <h3 class="text-xl font-bold text-emerald-900">Konfirmasi Donasi</h3>
+          <p class="text-xs text-slate-500 mt-1">
+            Terima kasih atas niat baik Anda berinfak di Masjid Al-Ihsan.
+          </p>
+        </div>
+        <div
+          id="donation-receipt-content"
+          class="bg-slate-50 p-4 rounded-xl text-sm space-y-2 border border-slate-200"
+        >
+          <!-- Receipt details populated via JS -->
+        </div>
+        <button
+          onclick="closeDonationModal()"
+          class="w-full bg-emerald-800 text-white font-bold py-3 rounded-xl hover:bg-emerald-900 transition"
+        >
+          Selesai / Tutup
+        </button>
+      </div>
+    </div>
+
+    <!-- Event Detail Modal -->
+    <div
+      id="detail-modal"
+      class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative space-y-4"
+      >
+        <button
+          onclick="closeDetailModal()"
+          class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div>
+          <span
+            class="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full uppercase"
+            id="modal-category-tag"
+            >Detail Kegiatan</span
+          >
+          <h3 class="text-2xl font-bold text-emerald-900 mt-2" id="modal-title">
+            Judul Kajian
+          </h3>
+          <p class="text-xs text-slate-500 mt-1" id="modal-time">
+            <i class="fa-solid fa-clock mr-1"></i> Waktu & Tempat
+          </p>
+        </div>
+        <div
+          class="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 border border-slate-200"
+          id="modal-description"
+        >
+          Deskripsi lengkap kajian atau kegiatan masjid.
+        </div>
+        <div class="flex items-center gap-3 pt-2">
+          <div
+            class="w-10 h-10 rounded-full bg-emerald-800 text-gold-400 flex items-center justify-center font-bold"
+          >
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <div>
+            <span class="text-xs text-slate-400 block"
+              >Pemateri / Narasumber</span
+            >
+            <span class="text-sm font-bold text-emerald-900" id="modal-speaker"
+              >Ustadz Tamu</span
+            >
+          </div>
+        </div>
+        <button
+          onclick="closeDetailModal()"
+          class="w-full bg-emerald-800 text-white font-bold py-3 rounded-xl hover:bg-emerald-900 transition mt-4"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+
+    <!-- Article Modal -->
+    <div
+      id="article-modal"
+      class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative space-y-4"
+      >
+        <button
+          onclick="closeArticleModal()"
+          class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div>
+          <span
+            class="text-xs font-bold text-gold-600 bg-amber-50 px-3 py-1 rounded-full uppercase"
+            >Buletin & Artikel</span
+          >
+          <h3
+            class="text-2xl font-bold text-emerald-900 mt-2"
+            id="article-modal-title"
+          >
+            Judul Artikel
+          </h3>
+        </div>
+        <div
+          class="bg-slate-50 p-4 rounded-xl text-sm text-slate-700 border border-slate-200 leading-relaxed max-h-60 overflow-y-auto"
+          id="article-modal-content"
+        >
+          Isi lengkap artikel...
+        </div>
+        <button
+          onclick="closeArticleModal()"
+          class="w-full bg-emerald-800 text-white font-bold py-3 rounded-xl hover:bg-emerald-900 transition"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Filter Events Function
+      function filterEvents(category) {
+        const cards = document.querySelectorAll(".event-card");
+        const buttons = document.querySelectorAll(".filter-btn");
+
+        buttons.forEach((btn) => {
+          btn.classList.remove("bg-emerald-800", "text-white");
+          btn.classList.add("bg-slate-100", "text-slate-600");
+        });
+        event.currentTarget.classList.remove("bg-slate-100", "text-slate-600");
+        event.currentTarget.classList.add("bg-emerald-800", "text-white");
+
+        cards.forEach((card) => {
+          if (
+            category === "all" ||
+            card.getAttribute("data-category") === category
+          ) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      // Countdown & Live Timer Simulation
+      function updateCountdown() {
+        // Target next prayer (Ashar in this simulation)
+        const now = new Date();
+        const targetTime = new Date();
+        targetTime.setHours(15, 18, 0); // 15:18 Ashar
+
+        if (now > targetTime) {
+          // If past ashar, target Maghrib (18:05)
+          targetTime.setHours(18, 5, 0);
+        }
+
+        const diff = targetTime - now;
+        if (diff > 0) {
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+          );
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+          document.getElementById("countdown-timer").innerText =
+            String(hours).padStart(2, "0") +
+            " : " +
+            String(minutes).padStart(2, "0") +
+            " : " +
+            String(seconds).padStart(2, "0");
+        } else {
+          document.getElementById("countdown-timer").innerText =
+            "Waktu Sholat Tiba";
+        }
+      }
+      setInterval(updateCountdown, 1000);
+
+      // Chart.js Finance Initialization
+      window.addEventListener("DOMContentLoaded", () => {
+        const ctx = document.getElementById("financeChart").getContext("2d");
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["Juli", "Agustus", "September", "Oktober", "November"],
+            datasets: [
+              {
+                label: "Pemasukan (Rp Juta)",
+                data: [15, 22, 19, 25, 18.2],
+                backgroundColor: "#059669",
+                borderRadius: 8,
+              },
+              {
+                label: "Pengeluaran (Rp Juta)",
+                data: [12, 16, 14, 20, 9.4],
+                backgroundColor: "#D97706",
+                borderRadius: 8,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: "bottom" },
+            },
+            scales: {
+              y: { beginAtZero: true },
+            },
+          },
+        });
+      });
+
+      // Donation Modal Handlers
+      function openDonationModal() {
+        document.getElementById("donation-modal").classList.remove("hidden");
+      }
+      function closeDonationModal() {
+        document.getElementById("donation-modal").classList.add("hidden");
+      }
+      function handleDonationSubmit(e) {
+        e.preventDefault();
+        const program = document.getElementById("donation-program").value;
+        const amount = document.getElementById("donation-amount").value;
+        const name =
+          document.getElementById("donation-name").value || "Hamba Allah";
+
+        const receiptHTML = `
+                <p><strong>Nama:</strong> ${name}</p>
+                <p><strong>Program:</strong> ${program.toUpperCase()}</p>
+                <p><strong>Nominal:</strong> Rp ${Number(amount).toLocaleString("id-ID")}</p>
+                <p class="text-xs text-emerald-700 font-semibold mt-2">Silakan transfer ke BSI 7123456789 dan konfirmasi via WhatsApp.</p>
+            `;
+        document.getElementById("donation-receipt-content").innerHTML =
+          receiptHTML;
+        openDonationModal();
+      }
+
+      // Detail Modal Handlers
+      function openDetailModal(title, time, speaker, desc) {
+        document.getElementById("modal-title").innerText = title;
+        document.getElementById("modal-time").innerHTML =
+          `<i class="fa-solid fa-clock mr-1"></i> ${time}`;
+        document.getElementById("modal-speaker").innerText = speaker;
+        document.getElementById("modal-description").innerText = desc;
+        document.getElementById("detail-modal").classList.remove("hidden");
+      }
+      function closeDetailModal() {
+        document.getElementById("detail-modal").classList.add("hidden");
+      }
+
+      // Article Modal Handlers
+      function openArticleModal(title, content) {
+        document.getElementById("article-modal-title").innerText = title;
+        document.getElementById("article-modal-content").innerText = content;
+        document.getElementById("article-modal").classList.remove("hidden");
+      }
+      function closeArticleModal() {
+        document.getElementById("article-modal").classList.add("hidden");
+      }
+
+      // Newsletter handler
+      function handleNewsletter(e) {
+        e.preventDefault();
+        alert("Terima kasih telah mendaftar buletin masjid!");
+        e.target.reset();
+      }
+    </script>
+  </body>
+</html>
